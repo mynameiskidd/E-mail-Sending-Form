@@ -35,11 +35,16 @@ $WebsiteError="URL is Required";
  }
  else{
 $Website=UserInput($_POST["Website"]);
+if(!preg_match("/(https:|ftp:)\/\/+[a-zA-Z0-9.\-_\/?\$=&\#\~`!]+\.[a-zA-Z0-9.\-_\/?\$=&\#\~`!]*/",$Website)){
+    $WebsiteError="Invalid Webside Address Format";	
+    }
 
 }  
-//Showing user input IF  the data is filtered and not empty
+//Displaying user input IF  the data is filtered and not empty
 if(!empty($_POST["Name"])&&!empty($_POST["Email"])&&!empty($_POST["Website"])){
-    if((preg_match("/^[A-Za-z\. ]*$/",$Name)==true)&&(preg_match("/[a-zA-Z0-9._-]{3,}@[a-zA-Z0-9._-]{3,}[.]{1}[a-zA-Z0-9._-]{2,}/",$Email)==true)){
+    if((preg_match("/^[A-Za-z\. ]*$/",$Name)==true)&&
+    (preg_match("/[a-zA-Z0-9._-]{3,}@[a-zA-Z0-9._-]{3,}[.]{1}[a-zA-Z0-9._-]{2,}/",$Email)==true)&&
+    (preg_match("/(https:|ftp:)\/\/+[a-zA-Z0-9.\-_\/?\$=&\#\~`!]+\.[a-zA-Z0-9.\-_\/?\$=&\#\~`!]*/",$Website))){
         echo "<h2>Thank you!</h2> <br>";
         echo "<h3>Name:".ucwords ($_POST["Name"])."<br></h3>";
         echo "<h3>E-mail: {$_POST["Email"]}<br></h3>";
