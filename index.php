@@ -70,10 +70,24 @@ function UserInput($Data){
     <title>Cat Pics and Comments</title>
     <style>
         body {
-            font-family: 'Helvetica', sans-serif;
-            background-color: #ececec;
+            position: relative;
             margin: 0;
             padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('cats.jpg') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(4px); /* Adjust the blur radius as needed */
+            z-index: -1; /* Move the pseudo-element behind the content */
         }
 
         form {
